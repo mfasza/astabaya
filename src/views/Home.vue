@@ -7,8 +7,8 @@
       }}</small>
       <!-- sub-kategori container -->
       <v-slide-group
-        v-model="model"
-        class="pa-0 ma-0 d-relative"
+        v-model="subkategori_selected"
+        class="pa-0 ma-0"
         active-class="success"
       >
         <v-slide-item
@@ -28,6 +28,39 @@
         </v-slide-item>
       </v-slide-group>
     </div>
+    <!-- publikasi container -->
+    <div class="mt-5">
+      <div class="mb-2 d-flex align-center">
+        <small class="text-sm-body font-weight-bold grey--text"
+          >Publikasi Terbaru</small
+        >
+        <v-spacer></v-spacer>
+        <v-btn x-small text class="blue--text">
+          Lainnya <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+      </div>
+
+      <v-slide-group
+        v-model="publikasi_selected"
+        class="pa-0 ma-0"
+        active-class="success"
+      >
+        <v-slide-item v-for="n in 5" :key="n">
+          <v-card
+            class="ma-2"
+            max-height="144"
+            min-height="80"
+            max-width="90"
+            min-width="50"
+            to="/"
+          >
+            <v-scale-transition>
+              <v-img src="../assets/getImageCover.jpg"></v-img>
+            </v-scale-transition>
+          </v-card>
+        </v-slide-item>
+      </v-slide-group>
+    </div>
   </div>
 </template>
 
@@ -35,7 +68,8 @@
 export default {
   name: "Home",
   data: () => ({
-    model: null,
+    subkategori_selected: null,
+    publikasi_selected: null,
     kategoris: [
       {
         kategori: "Sosial dan Kependudukan",
