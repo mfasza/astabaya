@@ -17,6 +17,12 @@ const routes = [
       import(/* webpackChunkName: "tabel" */ "../views/Tabel.vue"),
   },
   {
+    path: "/publikasi",
+    name: "Publikasi",
+    component: () =>
+      import(/* webpackChunkName: "publikasi" */ "../views/Publikasi"),
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting

@@ -41,7 +41,7 @@
           >Publikasi Terbaru</small
         >
         <v-spacer></v-spacer>
-        <v-btn x-small text class="blue--text">
+        <v-btn x-small text class="blue--text" to="/publikasi">
           Lainnya <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
