@@ -1,10 +1,16 @@
 <template>
   <div>
     <!-- kategori container -->
-    <div class="mb-2" v-for="kategori in kategoris" :key="kategori.index">
-      <small class="text-sm-body font-weight-bold grey--text">{{
-        kategori.kategori
-      }}</small>
+    <div class="mb-2" v-for="kategori, index in kategoris" :key="kategori.index">
+      <div class="mb-2 d-flex align-center">
+        <small class="text-sm-body font-weight-bold grey--text">{{
+          kategori.kategori
+        }}</small>
+        <v-spacer></v-spacer>
+        <v-btn x-small text class="blue--text" :to="`/tabel/`+index">
+          Lainnya <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+      </div>
       <!-- sub-kategori container -->
       <v-slide-group
         v-model="subkategori_selected"
@@ -99,11 +105,6 @@ export default {
             icon: "mdi-office-building",
             color: "#283593",
           },
-          {
-            subKategori: "Lainnya",
-            icon: "mdi-dots-horizontal",
-            color: "#90a4ae",
-          },
         ],
       },
       {
@@ -133,11 +134,6 @@ export default {
             subKategori: "Nilai Tukar Petani",
             icon: "mdi-sprout",
             color: "#689f38",
-          },
-          {
-            subKategori: "Lainnya",
-            icon: "mdi-dots-horizontal",
-            color: "#90a4ae",
           },
         ],
       },

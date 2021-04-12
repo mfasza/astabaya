@@ -14,7 +14,7 @@
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <!-- If using vue-router -->
-        <v-slide-y-transition>
+        <v-slide-y-transition hide-on-leave>
           <router-view></router-view>
         </v-slide-y-transition>
       </v-container>
@@ -23,16 +23,17 @@
       class="fixedMenu"
       app
       dark
+      color="yellow"
       v-model="menu"
       :style="{ 'background-color': '#0F8ED6' }"
     >
-      <v-btn value="beranda">
+      <v-btn value="beranda" to="/">
         <span>Beranda</span>
 
         <v-icon>mdi-home</v-icon>
       </v-btn>
 
-      <v-btn value="tabel">
+      <v-btn value="tabel" to="/tabel/0">
         <span>Tabel</span>
 
         <v-icon>mdi-table</v-icon>
@@ -70,10 +71,9 @@ export default {
     drawer: null,
     menu: "beranda",
     items: [
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me 2" },
+      { title: "Informasi Umum" },
+      { title: "Visi dan Misi" },
+      { title: "Tentang Kita" },
     ],
   }),
 };
