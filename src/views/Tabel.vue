@@ -9,6 +9,7 @@
     <div>
       <v-expansion-panels v-model="panel" multiple>
         <v-expansion-panel
+          class="outline mb-3"
           v-for="(kategori, i) in kategoris"
           :key="`kategori-` + i"
         >
@@ -125,5 +126,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.outline {
+  border: solid #0f8ed6 1px;
+}
 </style>

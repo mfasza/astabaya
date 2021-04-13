@@ -1,13 +1,17 @@
 <template>
   <div>
     <!-- kategori container -->
-    <div class="mb-2" v-for="kategori, index in kategoris" :key="kategori.index">
+    <div
+      class="mb-2"
+      v-for="(kategori, index) in kategoris"
+      :key="kategori.index"
+    >
       <div class="mb-2 d-flex align-center">
         <small class="text-sm-body font-weight-bold grey--text">{{
           kategori.kategori
         }}</small>
         <v-spacer></v-spacer>
-        <v-btn x-small text class="blue--text" :to="`/tabel/`+index">
+        <v-btn x-small text class="blue--text" :to="`/tabel/` + index">
           Lainnya <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
