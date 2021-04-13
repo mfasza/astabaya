@@ -3,9 +3,9 @@
     <!-- publikasi container -->
     <div class="mt-5">
       <div class="mb-2 d-flex align-center">
-        <small class="text-sm-body font-weight-bold grey--text"
-          >Publikasi Terbaru</small
-        >
+        <small class="text-sm-body font-weight-bold grey--text">
+          Publikasi
+        </small>
       </div>
 
     <v-list two-line>
@@ -15,8 +15,8 @@
                 <v-list-item>
                     <v-img class="mr-7 rounded" max-height="70" max-width="50" :src="require(`@/assets/${publikasi.cover}`)"></v-img>
                     <v-list-item-content>
-                        <span class="mb-5 body-2">{{ publikasi.judul }}</span>
-                        <span class="red--text caption">{{ publikasi.tanggal }}</span>
+                        <span class="mb-5 body-2" v-text="publikasi.judul"></span>
+                        <span class="red--text caption" v-text="publikasi.tanggal"></span>
                     </v-list-item-content>
                 </v-list-item>
             </div>
