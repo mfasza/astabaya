@@ -45,7 +45,13 @@
         <v-icon>mdi-book</v-icon>
       </v-btn>
 
-      <v-menu top offset-y close-on-click close-on-content-click>
+      <v-btn value="lainny" to="/lainnya">
+        <span>Lainnya</span>
+
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+
+      <!-- <v-menu top offset-y close-on-click close-on-content-click>
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark v-bind="attrs" v-on="on" value="lainnya">
             <span>Lainnya</span>
@@ -58,7 +64,7 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item>
         </v-list>
-      </v-menu>
+      </v-menu> -->
     </v-bottom-navigation>
   </v-app>
 </template>

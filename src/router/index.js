@@ -23,6 +23,12 @@ const routes = [
       import(/* webpackChunkName: "publikasi" */ "../views/Publikasi"),
   },
   {
+    path: "/lainnya",
+    name: "Lainnya",
+    component: () =>
+      import(/* webpackChunkName: "publikasi" */ "../views/Lainnya"),
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
