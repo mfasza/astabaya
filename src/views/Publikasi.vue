@@ -13,15 +13,10 @@
             <div v-for="publikasi, index in publikasis" :key="index">
                 <v-divider v-if="index != 0" :key="index"></v-divider>
                 <v-list-item>
-                    <v-img
-                        class="mr-7"
-                        max-width="50"
-                        max-height="70"
-                        src="../assets/getImageCover.jpg"
-                    ></v-img>
+                    <v-img class="mr-7 rounded" max-height="70" max-width="50" :src="require(`@/assets/${publikasi.cover}`)"></v-img>
                     <v-list-item-content>
-                        <v-text class="mb-5 body-2" v-html="publikasi.judul"></v-text>
-                        <v-list-item-subtitle class="red--text caption" v-html="publikasi.tanggal"></v-list-item-subtitle>
+                        <span class="mb-5 body-2">{{ publikasi.judul }}</span>
+                        <span class="red--text caption">{{ publikasi.tanggal }}</span>
                     </v-list-item-content>
                 </v-list-item>
             </div>
@@ -37,42 +32,42 @@ export default {
   data: () => ({
     publikasis: [
         {
-          cover: '../assets/getImageCover.jpg',
+          cover: 'getImageCover.jpg',
           judul: 'Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020',
           tanggal: '5 April 2021',
         },
         {
-          cover: '../assets/getImageCover.jpg',
+          cover: 'getImageCover.jpg',
           judul: 'Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020',
           tanggal: '5 April 2021',
         },
         {
-          cover: '../assets/getImageCover.jpg',
+          cover: 'getImageCover.jpg',
           judul: 'Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020',
           tanggal: '5 April 2021',
         },
         {
-          cover: '../assets/getImageCover.jpg',
+          cover: 'getImageCover.jpg',
           judul: 'Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020',
           tanggal: '5 April 2021',
         },
         {
-          cover: '../assets/getImageCover.jpg',
+          cover: 'getImageCover.jpg',
           judul: 'Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020',
           tanggal: '5 April 2021',
         },
         {
-          cover: '../assets/getImageCover.jpg',
+          cover: 'getImageCover.jpg',
           judul: 'Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020',
           tanggal: '5 April 2021',
         },
         {
-          cover: '../assets/getImageCover.jpg',
+          cover: 'getImageCover.jpg',
           judul: 'Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020',
           tanggal: '5 April 2021',
         },
         {
-          cover: '../assets/getImageCover.jpg',
+          cover: 'getImageCover.jpg',
           judul: 'Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020',
           tanggal: '5 April 2021',
         },
