@@ -9,6 +9,7 @@
     <div>
       <v-expansion-panels v-model="panel" multiple>
         <v-expansion-panel
+          class="outline mb-3"
           v-for="(kategori, i) in kategoris"
           :key="`kategori-` + i"
         >
@@ -16,11 +17,23 @@
             kategori.kategori
           }}</v-expansion-panel-header>
           <v-expansion-panel-content>
-            <ul v-for="subKategori,i in kategori.subKategoris" :key="`index-`+i">
-              <router-link to="/tabel/0" class="text-decoration-none black--text">
-                <li>{{subKategori.subKategori}}</li>
-              </router-link>
-            </ul>
+            <v-list flat dense>
+              <v-list-item-group v-model="selectedSubKategori" color="primary">
+                <v-list-item
+                  v-for="(subKategori, i) in kategori.subKategoris"
+                  :key="i"
+                >
+                  <v-list-item-icon>
+                    <v-icon v-text="subKategori.icon"></v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title
+                      v-text="subKategori.subKategori"
+                    ></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -36,32 +49,31 @@ export default {
     kategoris: [
       {
         kategori: "Sosial dan Kependudukan",
-        color: "blue",
         subKategoris: [
           {
             subKategori: "Penduduk",
-            icon: "mdi-account-multiple",
-            color: "#0F8ED6",
+            icon: "mdi-human-male-female",
+            color: "#1976d2",
           },
           {
             subKategori: "Kemiskinan",
             icon: "mdi-account",
-            color: "#FFC635",
+            color: "#ffc107",
           },
           {
             subKategori: "Tenaga Kerja",
             icon: "mdi-cogs",
-            color: "#C693F9",
+            color: "#795548",
           },
           {
             subKategori: "IPM",
-            icon: "mdi-yoga",
-            color: "#3549FF",
+            icon: "mdi-eye",
+            color: "#ab47bc",
           },
           {
             subKategori: "Pemerintahan",
             icon: "mdi-office-building",
-            color: "#53A340",
+            color: "#283593",
           },
         ],
       },
@@ -69,32 +81,38 @@ export default {
         kategori: "Ekonomi dan Perdagangan",
         subKategoris: [
           {
-            subKategori: "Penduduk",
-            icon: "mdi-account-multiple",
-            color: "#0F8ED6",
+            subKategori: "Pertumbuhan Ekonomi",
+            icon: "mdi-finance",
+            color: "#ff6f00",
           },
           {
-            subKategori: "Kemiskinan",
-            icon: "mdi-account",
-            color: "#FFC635",
+            subKategori: "Inflasi",
+            icon: "mdi-currency-usd",
+            color: "#bf360c",
           },
           {
-            subKategori: "Tenaga Kerja",
-            icon: "mdi-cogs",
-            color: "#C693F9",
+            subKategori: "Ekspor dan Impor",
+            icon: "mdi-arrow-expand",
+            color: "#37474f",
           },
           {
-            subKategori: "IPM",
-            icon: "mdi-yoga",
-            color: "#3549FF",
+            subKategori: "Pariwisata",
+            icon: "mdi-map-marker",
+            color: "#26c6da",
           },
           {
-            subKategori: "Pemerintahan",
-            icon: "mdi-office-building",
-            color: "#53A340",
+            subKategori: "Nilai Tukar Petani",
+            icon: "mdi-sprout",
+            color: "#689f38",
           },
         ],
       },
+    ],
+    selectedSubKategori: 0,
+    items: [
+      { text: "Real-Time", icon: "mdi-clock" },
+      { text: "Audience", icon: "mdi-account" },
+      { text: "Conversions", icon: "mdi-flag" },
     ],
   }),
   methods: {
@@ -108,5 +126,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.outline {
+  border: solid #0f8ed6 1px;
+}
 </style>

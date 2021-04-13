@@ -8,7 +8,7 @@
         </small>
       </div>
 
-    <v-list two-line>
+      <v-list two-line>
         <v-list-item-group>
             <div v-for="publikasi, index in publikasis" :key="index">
                 <v-divider v-if="index != 0" :key="index"></v-divider>
