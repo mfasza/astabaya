@@ -20,7 +20,6 @@
       </v-container>
     </v-main>
     <v-bottom-navigation
-      class="fixedMenu"
       app
       dark
       color="yellow"
@@ -33,7 +32,7 @@
         <v-icon>mdi-home</v-icon>
       </v-btn>
 
-      <v-btn value="tabel" to="/tabel/0">
+      <v-btn value="tabel" to="/tabel">
         <span>Tabel</span>
 
         <v-icon>mdi-table</v-icon>
@@ -89,8 +88,5 @@ export default {
   height: 35px;
   background-color: hsl(177, 41%, 91%);
   border-radius: 50%;
-}
-.fixedMenu {
-  position: fixed;
 }
 </style>

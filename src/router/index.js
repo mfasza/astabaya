@@ -11,6 +11,12 @@ const routes = [
     component: Home,
   },
   {
+    path: "/tabel/",
+    name: "TabelAll",
+    component: () =>
+      import(/* webpackChunkName: "tabel" */ "../views/Tabel.vue"),
+  },
+  {
     path: "/tabel/:panel",
     name: "Tabel",
     component: () =>
@@ -33,7 +39,6 @@ const routes = [
   },
   {
     path: "*",
-    name: "Home",
     component: Home,
   },
 ];
