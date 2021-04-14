@@ -66,6 +66,7 @@
           </v-list-item>
         </v-list>
       </v-menu> -->
+      </div>
     </v-bottom-navigation>
   </v-app>
 </template>
