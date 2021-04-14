@@ -73,6 +73,16 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;700&display=swap');
+
+html, body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#app {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 .app-bar-logo-bg {
   display: flex;
   align-items: center;
