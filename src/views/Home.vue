@@ -31,7 +31,7 @@
                 <v-btn fab dark :color="subKategori.color">
                   <v-icon dark>{{ subKategori.icon }}</v-icon>
                 </v-btn>
-                <small class="mt-1">{{ subKategori.subKategori }}</small>
+                <small class="mt-1 d-inline-block text-truncate text-center" style="max-width: 80px">{{ subKategori.subKategori }}</small>
               </div>
             </v-scale-transition>
           </v-row>

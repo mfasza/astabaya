@@ -23,6 +23,18 @@ const routes = [
       import(/* webpackChunkName: "tabel" */ "../views/Tabel.vue"),
   },
   {
+    path: "/tabel/:id_tabel/subkategori/:id_subkategori",
+    name: "SubKategori",
+    component: () =>
+      import(/* webpackChunkName: "sub_kategori" */ "../views/SubKategori.vue"),
+  },
+  {
+    path: "/tabel/:id_tabel/subkategori/:id_subkategori/data/:id_data",
+    name: "Data",
+    component: () =>
+      import(/* webpackChunkName: "data" */ "../views/Data.vue"),
+  },
+  {
     path: "/publikasi",
     name: "Publikasi",
     component: () =>

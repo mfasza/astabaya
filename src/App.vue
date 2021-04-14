@@ -51,6 +51,7 @@
 
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
+      </div>
 
       <!-- <v-menu top offset-y close-on-click close-on-content-click>
         <template v-slot:activator="{ on, attrs }">

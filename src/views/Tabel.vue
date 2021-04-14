@@ -10,8 +10,8 @@
       <v-expansion-panels v-model="panel" multiple>
         <v-expansion-panel
           class="outline mb-3"
-          v-for="(kategori, i) in kategoris"
-          :key="`kategori-` + i"
+          v-for="(kategori, index) in kategoris"
+          :key="`kategori-` + index"
         >
           <v-expansion-panel-header>{{
             kategori.kategori
@@ -22,6 +22,7 @@
                 <v-list-item
                   v-for="(subKategori, i) in kategori.subKategoris"
                   :key="i"
+                  :to="`/tabel/` + index + `/subkategori/` + i"
                 >
                   <v-list-item-icon>
                     <v-icon v-text="subKategori.icon"></v-icon>
