@@ -10,14 +10,14 @@
 
         <v-row dense>
             <v-col cols="12">
-                <v-list-item to="/" light>
+                <v-list-item to="/lainnya/infografis" light>
                     <v-list-item-content>
                         <v-list-item-title class="subtitle-2">
                             <v-icon class="mr-3">mdi-image-area</v-icon>Infografis
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item to="/" light>
+                <v-list-item to="/lainnya/infografis" light>
                     <v-list-item-content>
                         <v-list-item-title class="subtitle-2">
                             <v-icon class="mr-3">mdi-newspaper</v-icon>BRS

@@ -13,7 +13,7 @@
             <div v-for="publikasi, index in publikasis" :key="index">
                 <v-divider v-if="index != 0" :key="index"></v-divider>
                 <v-list-item>
-                    <v-img class="mr-7 rounded" max-height="70" max-width="50" :src="require(`@/assets/${publikasi.cover}`)"></v-img>
+                    <v-img class="mr-7 rounded" max-height="70" max-width="50" :src="require(`@/assets/publikasi/${publikasi.cover}`)"></v-img>
                     <v-list-item-content>
                         <span class="mb-5 body-2" v-text="publikasi.judul"></span>
                         <span class="red--text caption" v-text="publikasi.tanggal"></span>

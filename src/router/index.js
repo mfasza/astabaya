@@ -41,10 +41,22 @@ const routes = [
       import(/* webpackChunkName: "publikasi" */ "../views/Publikasi"),
   },
   {
+    path: "/lainnya/infografis",
+    name: "Infografis",
+    component: () =>
+      import(/* webpackChunkName: "infografis" */ "../views/Infografis"),
+  },
+  {
+    path: "/lainnya/infografi/:id",
+    name: "Infografi",
+    component: () =>
+      import(/* webpackChunkName: "infografi" */ "../views/Infografi"),
+  },
+  {
     path: "/lainnya",
     name: "Lainnya",
     component: () =>
-      import(/* webpackChunkName: "publikasi" */ "../views/Lainnya"),
+      import(/* webpackChunkName: "lainnya" */ "../views/Lainnya"),
   },
   {
     path: "/about",
