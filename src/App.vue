@@ -93,5 +93,6 @@ body {
 
 .v-btn:not(.v-btn--round).v-size--default {
   height: inherit !important;
+  width: inherit !important;
 }
 </style>
