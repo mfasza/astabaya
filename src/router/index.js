@@ -31,8 +31,7 @@ const routes = [
   {
     path: "/tabel/:id_tabel/subkategori/:id_subkategori/data/:id_data",
     name: "Data",
-    component: () =>
-      import(/* webpackChunkName: "data" */ "../views/Data.vue"),
+    component: () => import(/* webpackChunkName: "data" */ "../views/Data.vue"),
   },
   {
     path: "/publikasis",

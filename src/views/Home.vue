@@ -31,7 +31,11 @@
                 <v-btn fab dark :color="subKategori.color">
                   <v-icon dark>{{ subKategori.icon }}</v-icon>
                 </v-btn>
-                <small class="mt-1 d-inline-block text-truncate text-center" style="max-width: 80px">{{ subKategori.subKategori }}</small>
+                <small
+                  class="mt-1 d-inline-block text-truncate text-center"
+                  style="max-width: 80px"
+                  >{{ subKategori.subKategori }}</small
+                >
               </div>
             </v-scale-transition>
           </v-row>
@@ -65,7 +69,10 @@
             to="/"
           >
             <v-scale-transition>
-              <v-img src="../assets/publikasi/getImageCover.jpg" lazy-src="../assets/publikasi/getImageCover.jpg"></v-img>
+              <v-img
+                src="../assets/publikasi/getImageCover.jpg"
+                lazy-src="../assets/publikasi/getImageCover.jpg"
+              ></v-img>
             </v-scale-transition>
           </v-card>
         </v-slide-item>

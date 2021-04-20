@@ -122,7 +122,7 @@ export default {
               <td>Marie Bertrand</td>
               <td>France</td>
             </tr>
-          </table>`
+          </table>`,
         },
         {
           judul: "Tingkat Konsumsi di Bulan Ramadhan Tahun 2019-2020",

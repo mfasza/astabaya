@@ -21,37 +21,34 @@
     </v-main>
     <v-bottom-navigation
       app
-      dark
-      background-color="#0F8ED6"
-      grow
-      active-class="yellow--text"
       v-model="menu"
+      background-color="#0F8ED6"
+      dark
+      shift
     >
-      <div class="d-flex align-center justify-around text">
-        <v-btn value="beranda" to="/" color="#0F8ED6">
-          <span>Beranda</span>
+      <v-btn value="beranda" to="/">
+        <span>Beranda</span>
 
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
 
-        <v-btn value="tabel" to="/tabel" color="#0F8ED6">
-          <span>Tabel</span>
+      <v-btn value="tabel" to="/tabel">
+        <span>Tabel</span>
 
-          <v-icon>mdi-table</v-icon>
-        </v-btn>
+        <v-icon>mdi-table</v-icon>
+      </v-btn>
 
-        <v-btn value="publikasi" to="/publikasis" color="#0F8ED6">
-          <span>Publikasi</span>
+      <v-btn value="publikasi" to="/publikasis">
+        <span>Publikasi</span>
 
-          <v-icon>mdi-book</v-icon>
-        </v-btn>
+        <v-icon>mdi-book</v-icon>
+      </v-btn>
 
-        <v-btn value="lainny" to="/lainnya">
-          <span>Lainnya</span>
+      <v-btn value="lainnya" to="/lainnya">
+        <span>Lainnya</span>
 
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-      </div>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
     </v-bottom-navigation>
   </v-app>
 </template>
@@ -63,24 +60,20 @@ export default {
   data: () => ({
     drawer: null,
     menu: "beranda",
-    items: [
-      { title: "Informasi Umum" },
-      { title: "Visi dan Misi" },
-      { title: "Tentang Kita" },
-    ],
   }),
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;700&display=swap");
 
-html, body {
-  font-family: 'Josefin Sans', sans-serif;
+html,
+body {
+  font-family: "Josefin Sans", sans-serif;
 }
 
 #app {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .app-bar-logo-bg {
@@ -92,5 +85,13 @@ html, body {
   height: 35px;
   background-color: hsl(177, 41%, 91%);
   border-radius: 50%;
+}
+
+.theme--dark.v-btn.v-btn--has-bg {
+  background-color: #0f8ed6 !important;
+}
+
+.v-btn:not(.v-btn--round).v-size--default {
+  height: inherit !important;
 }
 </style>
