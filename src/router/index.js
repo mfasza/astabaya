@@ -35,7 +35,13 @@ const routes = [
       import(/* webpackChunkName: "data" */ "../views/Data.vue"),
   },
   {
-    path: "/publikasi",
+    path: "/publikasis",
+    name: "Publikasis",
+    component: () =>
+      import(/* webpackChunkName: "publikasi" */ "../views/Publikasis"),
+  },
+  {
+    path: "/publikasis/:id",
     name: "Publikasi",
     component: () =>
       import(/* webpackChunkName: "publikasi" */ "../views/Publikasi"),

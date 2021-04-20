@@ -45,7 +45,7 @@
           >Publikasi Terbaru</small
         >
         <v-spacer></v-spacer>
-        <v-btn x-small text class="blue--text" to="/publikasi">
+        <v-btn x-small text class="blue--text" to="/publikasis">
           Lainnya <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
@@ -65,7 +65,7 @@
             to="/"
           >
             <v-scale-transition>
-              <v-img src="../assets/publikasi/getImageCover.jpg"></v-img>
+              <v-img src="../assets/publikasi/getImageCover.jpg" lazy-src="../assets/publikasi/getImageCover.jpg"></v-img>
             </v-scale-transition>
           </v-card>
         </v-slide-item>

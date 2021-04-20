@@ -17,13 +17,6 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item to="/lainnya/infografis" light>
-                    <v-list-item-content>
-                        <v-list-item-title class="subtitle-2">
-                            <v-icon class="mr-3">mdi-newspaper</v-icon>BRS
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
             </v-col>
         </v-row>
 

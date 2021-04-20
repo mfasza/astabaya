@@ -40,7 +40,7 @@
           <v-icon>mdi-table</v-icon>
         </v-btn>
 
-        <v-btn value="publikasi" to="/publikasi" color="#0F8ED6">
+        <v-btn value="publikasi" to="/publikasis" color="#0F8ED6">
           <span>Publikasi</span>
 
           <v-icon>mdi-book</v-icon>
