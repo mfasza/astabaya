@@ -3,15 +3,15 @@
     <!-- kategori container -->
     <div
       class="mb-2"
-      v-for="(kategori, index) in kategoris"
-      :key="kategori.index"
+      v-for="kategori in kategoris"
+      :key="kategori.id"
     >
       <div class="mb-2 d-flex align-center">
         <small class="text-sm-body font-weight-bold grey--text">{{
           kategori.kategori
         }}</small>
         <v-spacer></v-spacer>
-        <v-btn x-small text class="blue--text" :to="`/tabel/` + index">
+        <v-btn x-small text class="blue--text" :to="`/tabel/` + kategori.id">
           Lainnya <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
@@ -23,12 +23,12 @@
       >
         <v-slide-item
           v-for="subKategori in kategori.subKategoris"
-          :key="subKategori.index"
+          :key="subKategori.id"
         >
           <v-row class="ma-2" align="center" justify="center">
             <v-scale-transition>
               <div class="d-flex flex-column flex-wrap align-center">
-                <v-btn fab dark :color="subKategori.color">
+                <v-btn fab dark :color="subKategori.color" :to="`/tabel/` + kategori.id + `/subkategori/` + subKategori.id">
                   <v-icon dark>{{ subKategori.icon }}</v-icon>
                 </v-btn>
                 <small
@@ -82,73 +82,49 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Home",
   data: () => ({
+    url: "http://10.84.68.178:8080/astabaya/public",
     subkategori_selected: null,
     publikasi_selected: null,
-    kategoris: [
-      {
-        kategori: "Sosial dan Kependudukan",
-        subKategoris: [
-          {
-            subKategori: "Penduduk",
-            icon: "mdi-human-male-female",
-            color: "#1976d2",
-          },
-          {
-            subKategori: "Kemiskinan",
-            icon: "mdi-account",
-            color: "#ffc107",
-          },
-          {
-            subKategori: "Tenaga Kerja",
-            icon: "mdi-cogs",
-            color: "#795548",
-          },
-          {
-            subKategori: "IPM",
-            icon: "mdi-eye",
-            color: "#ab47bc",
-          },
-          {
-            subKategori: "Pemerintahan",
-            icon: "mdi-office-building",
-            color: "#283593",
-          },
-        ],
-      },
-      {
-        kategori: "Ekonomi dan Perdagangan",
-        subKategoris: [
-          {
-            subKategori: "Pertumbuhan Ekonomi",
-            icon: "mdi-finance",
-            color: "#ff6f00",
-          },
-          {
-            subKategori: "Inflasi",
-            icon: "mdi-currency-usd",
-            color: "#bf360c",
-          },
-          {
-            subKategori: "Ekspor dan Impor",
-            icon: "mdi-arrow-expand",
-            color: "#37474f",
-          },
-          {
-            subKategori: "Pariwisata",
-            icon: "mdi-map-marker",
-            color: "#26c6da",
-          },
-          {
-            subKategori: "Nilai Tukar Petani",
-            icon: "mdi-sprout",
-            color: "#689f38",
-          },
-        ],
-      },
-    ],
+    kategoris: [],
   }),
+  mounted: async function () {
+    const kategoris = await this.fetchKategori();
+    for (let i = 0; i < kategoris.length; i++) {
+      const subKategori = await this.fetchSubKategori(kategoris[i].id);
+      kategoris[i].subKategoris = subKategori.map(function (sk) {
+        return {
+          subKategori: sk.sub_kategori,
+          id: sk.id,
+          link: sk.link,
+          icon: "mdi-drag",
+          color: "grey",
+        };
+      });
+      this.kategoris.push(kategoris[i]);
+    }
+  },
+  methods: {
+    fetchKategori: async function () {
+      const result = await axios
+        .get(this.url + "/kategori/get")
+        .then(function (response) {
+          return response.data.data.kategori;
+        });
+      return result;
+    },
+    fetchSubKategori: async function (kategori_id) {
+      const result = await axios
+        .get(this.url + "/sub_kategori/get?kategori_id=" + kategori_id)
+        .then(function (response) {
+          return response.data.data.sub_kategori;
+        });
+      return result;
+    },
+  },
 };
 </script>

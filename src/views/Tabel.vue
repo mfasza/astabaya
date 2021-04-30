@@ -10,8 +10,8 @@
       <v-expansion-panels v-model="panel" multiple>
         <v-expansion-panel
           class="outline mb-3"
-          v-for="(kategori, index) in kategoris"
-          :key="`kategori-` + index"
+          v-for="kategori in kategoris"
+          :key="kategori.id"
         >
           <v-expansion-panel-header>{{
             kategori.kategori
@@ -20,9 +20,9 @@
             <v-list flat dense>
               <v-list-item-group v-model="selectedSubKategori" color="primary">
                 <v-list-item
-                  v-for="(subKategori, i) in kategori.subKategoris"
-                  :key="i"
-                  :to="`/tabel/` + index + `/subkategori/` + i"
+                  v-for="subKategori in kategori.subKategoris"
+                  :key="subKategori.id"
+                  :to="`/tabel/` + kategori.id + `/subkategori/` + subKategori.id"
                 >
                   <v-list-item-icon>
                     <v-icon v-text="subKategori.icon"></v-icon>
@@ -43,72 +43,14 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Tabel",
   data: () => ({
     panel: [null],
-    kategoris: [
-      {
-        kategori: "Sosial dan Kependudukan",
-        subKategoris: [
-          {
-            subKategori: "Penduduk",
-            icon: "mdi-human-male-female",
-            color: "#1976d2",
-          },
-          {
-            subKategori: "Kemiskinan",
-            icon: "mdi-account",
-            color: "#ffc107",
-          },
-          {
-            subKategori: "Tenaga Kerja",
-            icon: "mdi-cogs",
-            color: "#795548",
-          },
-          {
-            subKategori: "IPM",
-            icon: "mdi-eye",
-            color: "#ab47bc",
-          },
-          {
-            subKategori: "Pemerintahan",
-            icon: "mdi-office-building",
-            color: "#283593",
-          },
-        ],
-      },
-      {
-        kategori: "Ekonomi dan Perdagangan",
-        subKategoris: [
-          {
-            subKategori: "Pertumbuhan Ekonomi",
-            icon: "mdi-finance",
-            color: "#ff6f00",
-          },
-          {
-            subKategori: "Inflasi",
-            icon: "mdi-currency-usd",
-            color: "#bf360c",
-          },
-          {
-            subKategori: "Ekspor dan Impor",
-            icon: "mdi-arrow-expand",
-            color: "#37474f",
-          },
-          {
-            subKategori: "Pariwisata",
-            icon: "mdi-map-marker",
-            color: "#26c6da",
-          },
-          {
-            subKategori: "Nilai Tukar Petani",
-            icon: "mdi-sprout",
-            color: "#689f38",
-          },
-        ],
-      },
-    ],
+    url: "http://10.84.68.178:8080/astabaya/public",
+    kategoris: [],
     selectedSubKategori: 0,
     items: [
       { text: "Real-Time", icon: "mdi-clock" },
@@ -117,12 +59,42 @@ export default {
     ],
   }),
   methods: {
-    openPanel(panel) {
+    openPanel: function (panel) {
       this.panel.splice(0, 1, parseInt(panel));
     },
+    fetchKategori: async function () {
+      const result = await axios
+        .get(this.url + "/kategori/get")
+        .then(function (response) {
+          return response.data.data.kategori;
+        });
+      return result;
+    },
+    fetchSubKategori: async function (kategori_id) {
+      const result = await axios
+        .get(this.url + "/sub_kategori/get?kategori_id=" + kategori_id)
+        .then(function (response) {
+          return response.data.data.sub_kategori;
+        });
+      return result;
+    },
   },
-  mounted() {
-    this.openPanel(this.$route.params.panel);
+  mounted: async function () {
+    this.openPanel(this.$route.params.panel - 1);
+    const kategoris = await this.fetchKategori();
+    for (let i = 0; i < kategoris.length; i++) {
+      const subKategori = await this.fetchSubKategori(kategoris[i].id);
+      kategoris[i].subKategoris = subKategori.map(function (sk) {
+        return {
+          subKategori: sk.sub_kategori,
+          id: sk.id,
+          link: sk.link,
+          icon: "mdi-drag",
+          color: "grey",
+        };
+      });
+      this.kategoris.push(kategoris[i]);
+    }
   },
 };
 </script>
