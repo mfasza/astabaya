@@ -11,27 +11,28 @@ const routes = [
     component: Home,
   },
   {
-    path: "/tabel/",
-    name: "TabelAll",
+    path: "/kategori/",
+    name: "KategoriAll",
     component: () =>
-      import(/* webpackChunkName: "tabel" */ "../views/Tabel.vue"),
+      import(/* webpackChunkName: "kategori" */ "../views/Kategori.vue"),
   },
   {
-    path: "/tabel/:panel",
-    name: "Tabel",
+    path: "/kategori/:panel",
+    name: "Kategori",
     component: () =>
-      import(/* webpackChunkName: "tabel" */ "../views/Tabel.vue"),
+      import(/* webpackChunkName: "kategori" */ "../views/Kategori.vue"),
   },
   {
-    path: "/tabel/:id_tabel/subkategori/:id_subkategori",
+    path: "/kategori/:id_kategori/subkategori/:id_subkategori",
     name: "SubKategori",
     component: () =>
       import(/* webpackChunkName: "sub_kategori" */ "../views/SubKategori.vue"),
   },
   {
-    path: "/tabel/:id_tabel/subkategori/:id_subkategori/data/:id_data",
-    name: "Data",
-    component: () => import(/* webpackChunkName: "data" */ "../views/Data.vue"),
+    path: "/kategori/:id_kategori/subkategori/:id_subkategori/tabel/:id_tabel",
+    name: "Tabel",
+    component: () =>
+      import(/* webpackChunkName: "tabel" */ "../views/Tabel.vue"),
   },
   {
     path: "/publikasis",
@@ -62,15 +63,6 @@ const routes = [
     name: "Lainnya",
     component: () =>
       import(/* webpackChunkName: "lainnya" */ "../views/Lainnya"),
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
     path: "*",

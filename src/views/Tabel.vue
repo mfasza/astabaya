@@ -1,43 +1,21 @@
 <template>
   <div>
-    <div class="my-2">
-      <small class="text-sm-body font-weight-bold grey--text"
-        >Tabel / Indikator</small
-      >
-    </div>
-
-    <div>
-      <v-expansion-panels v-model="panel" multiple>
-        <v-expansion-panel
-          class="outline mb-3"
-          v-for="kategori in kategoris"
-          :key="kategori.id"
-        >
-          <v-expansion-panel-header>{{
-            kategori.kategori
-          }}</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <v-list flat dense>
-              <v-list-item-group v-model="selectedSubKategori" color="primary">
-                <v-list-item
-                  v-for="subKategori in kategori.subKategoris"
-                  :key="subKategori.id"
-                  :to="`/tabel/` + kategori.id + `/subkategori/` + subKategori.id"
-                >
-                  <v-list-item-icon>
-                    <v-icon v-text="subKategori.icon"></v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title
-                      v-text="subKategori.subKategori"
-                    ></v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
+    <v-row align="center" v-show="seris.length > 1">
+      <v-col cols="6" offset="3">
+        <v-select
+          rounded
+          solo
+          dense
+          v-model="seri"
+          :items="seris"
+          label="Seri"
+          item-text="seris"
+          required
+        ></v-select>
+      </v-col>
+    </v-row>
+    <div class="overflow-table">
+      <div v-html="selected.isi_tabel"></div>
     </div>
   </div>
 </template>
@@ -46,61 +24,53 @@
 import axios from "axios";
 
 export default {
-  name: "Tabel",
+  name: "IsiTabel",
   data: () => ({
-    panel: [null],
-    url: "http://10.84.68.178:8080/astabaya/public",
-    kategoris: [],
-    selectedSubKategori: 0,
-    items: [
-      { text: "Real-Time", icon: "mdi-clock" },
-      { text: "Audience", icon: "mdi-account" },
-      { text: "Conversions", icon: "mdi-flag" },
-    ],
+    selected: null,
+    seri: "",
+    seris: [],
+    isi_tabels: [],
   }),
-  methods: {
-    openPanel: function (panel) {
-      this.panel.splice(0, 1, parseInt(panel));
+  computed: {
+    id_tabel: function () {
+      return this.$route.params.id_tabel;
     },
-    fetchKategori: async function () {
-      const result = await axios
-        .get(this.url + "/kategori/get")
-        .then(function (response) {
-          return response.data.data.kategori;
-        });
-      return result;
-    },
-    fetchSubKategori: async function (kategori_id) {
-      const result = await axios
-        .get(this.url + "/sub_kategori/get?kategori_id=" + kategori_id)
-        .then(function (response) {
-          return response.data.data.sub_kategori;
-        });
-      return result;
+  },
+  watch: {
+    seri: function () {
+      this.watchSeri();
     },
   },
   mounted: async function () {
-    this.openPanel(this.$route.params.panel - 1);
-    const kategoris = await this.fetchKategori();
-    for (let i = 0; i < kategoris.length; i++) {
-      const subKategori = await this.fetchSubKategori(kategoris[i].id);
-      kategoris[i].subKategoris = subKategori.map(function (sk) {
-        return {
-          subKategori: sk.sub_kategori,
-          id: sk.id,
-          link: sk.link,
-          icon: "mdi-drag",
-          color: "grey",
-        };
-      });
-      this.kategoris.push(kategoris[i]);
-    }
+    this.watchSeri();
+    this.isi_tabels = await this.fetchIsiTabel(this.id_tabel);
+    this.selected = this.isi_tabels[0];
+    this.seri = this.selected.series;
+    this.seris = this.isi_tabels.map(function (it) {
+      return it.series;
+    });
+  },
+  methods: {
+    fetchIsiTabel: async function (tabel_id) {
+      const result = await axios
+        .get(this.url + "/isi_tabel/get?tabel_id=" + tabel_id)
+        .then(function (response) {
+          return response.data.data.isi_tabel;
+        });
+      return result;
+    },
+    watchSeri: function () {
+      const seri = this.seri;
+      return (this.selected = this.isi_tabels.find(function (it) {
+        return it.series == seri;
+      }));
+    },
   },
 };
 </script>
 
-<style scoped>
-.outline {
-  border: solid #0f8ed6 1px;
+<style>
+.overflow-table {
+  overflow: auto;
 }
 </style>

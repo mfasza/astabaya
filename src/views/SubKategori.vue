@@ -2,19 +2,19 @@
   <div>
     <v-list two-line>
       <v-list-item-group>
-        <div v-for="(data, index) in datas" :key="index">
+        <div v-for="tabel in tabels" :key="tabel.id">
           <v-list-item
             :to="
-              `/tabel/` +
-              tabel +
+              `/kategori/` +
+              id_kategori +
               `/subkategori/` +
-              sub_kategori +
-              `/data/` +
-              index
+              id_sub_kategori +
+              `/tabel/` +
+              tabel.id
             "
           >
             <v-list-item-content>
-              <span class="text-subtitle-2" v-text="data.judul"></span>
+              <span class="text-subtitle-2" v-text="tabel.tabel"></span>
             </v-list-item-content>
           </v-list-item>
           <v-divider></v-divider>
@@ -25,50 +25,32 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "SubKategori",
   data: () => ({
-    datas: [
-      {
-        judul:
-          "Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020",
-      },
-      {
-        judul:
-          "Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020",
-      },
-      {
-        judul:
-          "Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020",
-      },
-      {
-        judul:
-          "Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020",
-      },
-      {
-        judul:
-          "Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020",
-      },
-      {
-        judul:
-          "Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020",
-      },
-      {
-        judul:
-          "Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020",
-      },
-      {
-        judul:
-          "Produk Domestik Regional Bruto Kota Surabaya Menurut Lapangan Usaha 2016-2020",
-      },
-    ],
+    tabels: [],
   }),
   computed: {
-    tabel: function () {
-      return this.$route.params.id_tabel;
+    id_kategori: function () {
+      return this.$route.params.id_kategori;
     },
-    sub_kategori: function () {
+    id_sub_kategori: function () {
       return this.$route.params.id_subkategori;
+    },
+  },
+  mounted: async function () {
+    this.tabels = await this.fetchTabel(this.id_sub_kategori);
+  },
+  methods: {
+    fetchTabel: async function (sub_kategori_id) {
+      const result = await axios
+        .get(this.url + "/tabel/get?sub_kategori_id=" + sub_kategori_id)
+        .then(function (response) {
+          return response.data.data.tabel;
+        });
+      return result;
     },
   },
 };

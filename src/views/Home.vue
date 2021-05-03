@@ -1,17 +1,13 @@
 <template>
   <div>
     <!-- kategori container -->
-    <div
-      class="mb-2"
-      v-for="kategori in kategoris"
-      :key="kategori.id"
-    >
+    <div class="mb-2" v-for="kategori in kategoris" :key="kategori.id">
       <div class="mb-2 d-flex align-center">
         <small class="text-sm-body font-weight-bold grey--text">{{
           kategori.kategori
         }}</small>
         <v-spacer></v-spacer>
-        <v-btn x-small text class="blue--text" :to="`/tabel/` + kategori.id">
+        <v-btn x-small text class="blue--text" :to="`/kategori/` + kategori.id">
           Lainnya <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
@@ -28,7 +24,17 @@
           <v-row class="ma-2" align="center" justify="center">
             <v-scale-transition>
               <div class="d-flex flex-column flex-wrap align-center">
-                <v-btn fab dark :color="subKategori.color" :to="`/tabel/` + kategori.id + `/subkategori/` + subKategori.id">
+                <v-btn
+                  fab
+                  dark
+                  :color="subKategori.color"
+                  :to="
+                    `/kategori/` +
+                    kategori.id +
+                    `/subkategori/` +
+                    subKategori.id
+                  "
+                >
                   <v-icon dark>{{ subKategori.icon }}</v-icon>
                 </v-btn>
                 <small
@@ -87,7 +93,6 @@ import axios from "axios";
 export default {
   name: "Home",
   data: () => ({
-    url: "http://10.84.68.178:8080/astabaya/public",
     subkategori_selected: null,
     publikasi_selected: null,
     kategoris: [],

@@ -6,6 +6,8 @@ import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
 
+Vue.prototype.url = "http://astabaya.ddns.net/astabaya/public";
+
 new Vue({
   router,
   store,

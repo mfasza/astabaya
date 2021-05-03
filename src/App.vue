@@ -6,9 +6,6 @@
       </div>
       <v-toolbar-title>ASTABAYA</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
     </v-app-bar>
     <v-main app color="#E5E5E5">
       <!-- Provides the application the proper gutter -->
@@ -32,7 +29,7 @@
         <v-icon>mdi-home</v-icon>
       </v-btn>
 
-      <v-btn value="tabel" to="/tabel">
+      <v-btn value="tabel" to="/kategori">
         <span>Tabel</span>
 
         <v-icon>mdi-table</v-icon>
