@@ -2,24 +2,6 @@
   <div>
     <!-- lainnya container -->
     <div class="mt-5">
-      <div class="mt-2 mb-2 d-flex align-center">
-        <small class="text-sm-body font-weight-bold grey--text">
-          Lainnya
-        </small>
-      </div>
-
-      <v-row dense>
-        <v-col cols="12">
-          <v-list-item to="/lainnya/infografis" light>
-            <v-list-item-content>
-              <v-list-item-title class="subtitle-2">
-                <v-icon class="mr-3">mdi-image-area</v-icon>Infografis
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-col>
-      </v-row>
-
       <div class="mt-5 mb-2 d-flex align-center">
         <small class="text-sm-body font-weight-bold grey--text">
           Tentang BPS
@@ -178,7 +160,7 @@
 
 <script>
 export default {
-  name: "Publikasi",
+  name: "Lainnya",
   data: () => ({}),
 };
 </script>

@@ -20,8 +20,8 @@
       app
       v-model="menu"
       background-color="#0F8ED6"
+      color="#FFC635"
       dark
-      shift
     >
       <v-btn value="beranda" to="/">
         <span>Beranda</span>
@@ -35,10 +35,10 @@
         <v-icon>mdi-table</v-icon>
       </v-btn>
 
-      <v-btn value="publikasi" to="/publikasis">
-        <span>Publikasi</span>
+      <v-btn value="infografis" to="/Infografis">
+        <span>Infografis</span>
 
-        <v-icon>mdi-book</v-icon>
+        <v-icon>mdi-image</v-icon>
       </v-btn>
 
       <v-btn value="lainnya" to="/lainnya">

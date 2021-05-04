@@ -35,28 +35,16 @@ const routes = [
       import(/* webpackChunkName: "tabel" */ "../views/Tabel.vue"),
   },
   {
-    path: "/publikasis",
-    name: "Publikasis",
-    component: () =>
-      import(/* webpackChunkName: "publikasi" */ "../views/Publikasis"),
-  },
-  {
-    path: "/publikasis/:id",
-    name: "Publikasi",
-    component: () =>
-      import(/* webpackChunkName: "publikasi" */ "../views/Publikasi"),
-  },
-  {
-    path: "/lainnya/infografis",
+    path: "/infografis",
     name: "Infografis",
     component: () =>
       import(/* webpackChunkName: "infografis" */ "../views/Infografis"),
   },
   {
-    path: "/lainnya/infografi/:id",
+    path: "/isi_infografis/:id_infografis",
     name: "Infografi",
     component: () =>
-      import(/* webpackChunkName: "infografi" */ "../views/Infografi"),
+      import(/* webpackChunkName: "infografi" */ "../views/IsiInfografis"),
   },
   {
     path: "/lainnya",

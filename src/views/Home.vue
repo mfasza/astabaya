@@ -48,36 +48,36 @@
         </v-slide-item>
       </v-slide-group>
     </div>
-    <!-- publikasi container -->
+    <!-- infografis container -->
     <div class="mt-5">
       <div class="mb-2 d-flex align-center">
         <small class="text-sm-body font-weight-bold grey--text"
-          >Publikasi Terbaru</small
+          >Infografis Terbaru</small
         >
         <v-spacer></v-spacer>
-        <v-btn x-small text class="blue--text" to="/publikasis">
+        <v-btn x-small text class="blue--text" to="/infografis">
           Lainnya <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
 
       <v-slide-group
-        v-model="publikasi_selected"
+        v-model="infografis_selected"
         class="pa-0 ma-0"
         active-class="success"
       >
-        <v-slide-item v-for="n in 5" :key="n">
+        <v-slide-item v-for="infografis in infografiss" :key="infografis.id">
           <v-card
             class="ma-2"
             max-height="144"
             min-height="80"
             max-width="90"
             min-width="50"
-            to="/"
+            :to="`/isi_infografis/` + infografis.id"
           >
             <v-scale-transition>
               <v-img
-                src="../assets/publikasi/getImageCover.jpg"
-                lazy-src="../assets/publikasi/getImageCover.jpg"
+                :src="infografis.file_path"
+                :lazy-src="infografis.file_path"
               ></v-img>
             </v-scale-transition>
           </v-card>
@@ -94,26 +94,96 @@ export default {
   name: "Home",
   data: () => ({
     subkategori_selected: null,
-    publikasi_selected: null,
+    infografis_selected: null,
     kategoris: [],
+    infografiss: [],
   }),
   mounted: async function () {
+    const sub_kategori_options = [
+      {
+        kategori: "Sosial dan Kependudukan",
+        subKategori: [
+          "Indeks Pembangunan Manusia",
+          "Kemiskinan dan Ketimpangan",
+          "Kependudukan",
+          "Pemerintahan",
+          "Tenaga Kerja",
+        ],
+        icon: ["mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag"],
+        color: ["grey", "red", "blue", "green", "yellow"],
+      },
+      {
+        kategori: "Ekonomi dan Perdagangan",
+        subKategori: [
+          "Industri",
+          "Inflasi",
+          "Pariwisata",
+          "Produk Domestik Regional Bruto",
+          "Transportasi",
+        ],
+        icon: ["mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag"],
+        color: ["grey", "red", "blue", "green", "yellow"],
+      },
+      {
+        kategori: "Pertanian dan Pertambangan",
+        subKategori: [
+          "Hortikultura",
+          "Perikanan",
+          "Perkebunan",
+          "Peternakan",
+          "Tanaman Pangan",
+        ],
+        icon: ["mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag"],
+        color: ["grey", "red", "blue", "green", "yellow"],
+      },
+    ];
     const kategoris = await this.fetchKategori();
     for (let i = 0; i < kategoris.length; i++) {
-      const subKategori = await this.fetchSubKategori(kategoris[i].id);
-      kategoris[i].subKategoris = subKategori.map(function (sk) {
-        return {
-          subKategori: sk.sub_kategori,
-          id: sk.id,
-          link: sk.link,
-          icon: "mdi-drag",
-          color: "grey",
-        };
-      });
-      this.kategoris.push(kategoris[i]);
+      for (let j = 0; j < sub_kategori_options.length; j++) {
+        if (kategoris[i].kategori == sub_kategori_options[j].kategori) {
+          var subKategori = await this.fetchSubKategori(kategoris[i].id);
+          subKategori = subKategori.map(function (sk) {
+            return {
+              subKategori: sk.sub_kategori,
+              id: sk.id,
+              link: sk.link,
+            };
+          });
+          subKategori = subKategori.filter(function (sk) {
+            let r = false;
+            for (
+              let ski = 0;
+              ski < sub_kategori_options[j].subKategori.length;
+              ski++
+            ) {
+              if (sk.subKategori == sub_kategori_options[j].subKategori[ski]) {
+                sk.icon = sub_kategori_options[j].icon[ski];
+                sk.color = sub_kategori_options[j].color[ski];
+                r = true;
+              }
+            }
+            return r;
+          });
+          kategoris[i].subKategoris = subKategori;
+          this.kategoris.push(kategoris[i]);
+          break;
+        }
+      }
     }
+    var infografiss = await this.fetchInfografis();
+    infografiss.sort(function (a, b) {
+      return b.id - a.id;
+    });
+    infografiss = infografiss.slice(0, 3);
+    this.infografiss = infografiss;
+  },
+  beforeDestroy: function () {
+    document.removeEventListener("backbutton", this.yourCallBackFunction);
   },
   methods: {
+    back: function () {
+      alert("aaa");
+    },
     fetchKategori: async function () {
       const result = await axios
         .get(this.url + "/kategori/get")
@@ -127,6 +197,14 @@ export default {
         .get(this.url + "/sub_kategori/get?kategori_id=" + kategori_id)
         .then(function (response) {
           return response.data.data.sub_kategori;
+        });
+      return result;
+    },
+    fetchInfografis: async function () {
+      const result = await axios
+        .get(this.url + "/infografis/get")
+        .then(function (response) {
+          return response.data.data.infografis;
         });
       return result;
     },

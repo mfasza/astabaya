@@ -56,11 +56,6 @@ export default {
     panel: [null],
     kategoris: [],
     selectedSubKategori: 0,
-    items: [
-      { text: "Real-Time", icon: "mdi-clock" },
-      { text: "Audience", icon: "mdi-account" },
-      { text: "Conversions", icon: "mdi-flag" },
-    ],
   }),
   methods: {
     openPanel: function (panel) {
@@ -93,8 +88,7 @@ export default {
           subKategori: sk.sub_kategori,
           id: sk.id,
           link: sk.link,
-          icon: "mdi-drag",
-          color: "grey",
+          icon: "mdi-circle-medium",
         };
       });
       this.kategoris.push(kategoris[i]);
