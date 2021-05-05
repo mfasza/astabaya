@@ -18,13 +18,7 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <p class="ml-3 mt-3 caption text-justify">
-              BPS Kota Surabaya adalah instansi vertikal yang berada di bawah
-              dan bertanggung jawab kepada kepala BPS Provinsi Jawa Timur.
-              Struktur organisasi BPS Kota Surabaya sesuai dengan Peraturan
-              Presiden Nomor 86 Tahun 2007 terdiri dari Kepala, Subbagian Tata
-              Usaha, Seksi Statistik Sosial, Seksi Statistik Produksi. Seksi
-              Statistik Distribusi, Seksi Neraca Wilayah dan Analisis Statistik,
-              dan Seksi Integrasi Pengolahan dan Diseminasi Statistik.
+              {{ tentang.info[0].isi }}
             </p>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -38,25 +32,11 @@
           <v-expansion-panel-content>
             <p class="mt-3 h6">Visi</p>
             <p class="ml-3 caption font-weight-bold">
-              Pelopor data statistik terpercaya untuk semua
+              {{ tentang.visi[0].isi }}
             </p>
             <p>&nbsp;</p>
             <p>Misi</p>
-            <ol class="caption text-justify">
-              <li>
-                Menyediakan data statistik berkualitas melalui kegiatan
-                statistik yang terintegrasi dan berstandar nasional maupun
-                internasional.
-              </li>
-              <li>
-                Memperkuat Sistem Statistik Nasional yang berkesinambungan
-                melalui pembinaan dan koordinasi di bidang statistik.
-              </li>
-              <li>
-                Membangun insan statistik yang profesional, berintegritas dan
-                amanah untuk kemajuan perstatistikan.
-              </li>
-            </ol>
+            <ol class="caption text-justify" v-html="tentang.misi[0].isi"></ol>
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
@@ -75,7 +55,7 @@
                       <v-icon class="mr-3">mdi-map-marker</v-icon>
                     </v-col>
                     <v-col class="text-wrap">
-                      Jl. Ahmad Yani 152E Surabaya 60235
+                      {{ tentang.alamat[0].isi }}
                     </v-col>
                   </v-row>
                 </v-list-item-subtitle>
@@ -84,7 +64,9 @@
                     <v-col cols="2">
                       <v-icon class="mr-3">mdi-phone</v-icon>
                     </v-col>
-                    <v-col class="text-wrap"> (031) 8296692 </v-col>
+                    <v-col class="text-wrap">
+                      {{ tentang.telepon[0].isi }}
+                    </v-col>
                   </v-row>
                 </v-list-item-subtitle>
                 <v-list-item-subtitle>
@@ -92,7 +74,7 @@
                     <v-col cols="2">
                       <v-icon class="mr-3">mdi-fax</v-icon>
                     </v-col>
-                    <v-col class="text-wrap"> (031) 8296691 </v-col>
+                    <v-col class="text-wrap"> {{ tentang.fax[0].isi }} </v-col>
                   </v-row>
                 </v-list-item-subtitle>
                 <v-list-item-subtitle>
@@ -100,7 +82,9 @@
                     <v-col cols="2">
                       <v-icon class="mr-3">mdi-email-outline</v-icon>
                     </v-col>
-                    <v-col class="text-wrap"> bps3578@bps.go.id </v-col>
+                    <v-col class="text-wrap">
+                      {{ tentang.email[0].isi }}
+                    </v-col>
                   </v-row>
                 </v-list-item-subtitle>
               </v-list-item-content>
@@ -122,7 +106,9 @@
                     <v-col cols="2">
                       <v-icon class="mr-3">mdi-facebook</v-icon>
                     </v-col>
-                    <v-col class="text-wrap"> BPS Kota Surabaya </v-col>
+                    <v-col class="text-wrap">
+                      {{ tentang.facebook[0].isi }}
+                    </v-col>
                   </v-row>
                 </v-list-item-subtitle>
                 <v-list-item-subtitle>
@@ -130,7 +116,9 @@
                     <v-col cols="2">
                       <v-icon class="mr-3">mdi-instagram</v-icon>
                     </v-col>
-                    <v-col class="text-wrap"> @bpskotasurabaya </v-col>
+                    <v-col class="text-wrap">
+                      {{ tentang.instagram[0].isi }}
+                    </v-col>
                   </v-row>
                 </v-list-item-subtitle>
                 <v-list-item-subtitle>
@@ -138,7 +126,9 @@
                     <v-col cols="2">
                       <v-icon class="mr-3">mdi-youtube</v-icon>
                     </v-col>
-                    <v-col class="text-wrap"> BPS Kota Surabaya </v-col>
+                    <v-col class="text-wrap">
+                      {{ tentang.youtube[0].isi }}
+                    </v-col>
                   </v-row>
                 </v-list-item-subtitle>
                 <v-list-item-subtitle>
@@ -146,7 +136,9 @@
                     <v-col cols="2">
                       <v-icon class="mr-3">mdi-web</v-icon>
                     </v-col>
-                    <v-col class="text-wrap"> surabayakota.bps.go.id </v-col>
+                    <v-col class="text-wrap">
+                      {{ tentang.website[0].isi }}
+                    </v-col>
                   </v-row>
                 </v-list-item-subtitle>
               </v-list-item-content>
@@ -159,8 +151,26 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Lainnya",
-  data: () => ({}),
+  data: () => ({
+    tentang: {},
+  }),
+  mounted: async function () {
+    this.tentang = await this.fetchTentang();
+    this.tentang.misi[0].isi = this.tentang.misi[0].isi.replace(/\n/g, "<br>");
+  },
+  methods: {
+    fetchTentang: async function () {
+      const result = await axios
+        .get(this.url + "/tentang/get")
+        .then(function (response) {
+          return response.data.data;
+        });
+      return result;
+    },
+  },
 };
 </script>
