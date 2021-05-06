@@ -1,6 +1,9 @@
 <template>
   <v-app>
     <v-app-bar app dark color="#0F8ED6">
+      <v-btn v-show="isMain" icon @click.stop="$router.go(-1)">
+        <v-icon>mdi-arrow-left-circle</v-icon>
+      </v-btn>
       <div class="app-bar-logo-bg">
         <v-img src="./assets/logo_bps.png"></v-img>
       </div>
@@ -53,11 +56,17 @@
 <script>
 export default {
   name: "App",
-
   data: () => ({
     drawer: null,
     menu: "beranda",
   }),
+  computed: {
+    isMain() {
+      const url = this.$route.path
+      const splited_url  = url.split("/");
+      return splited_url.length > 2;
+    }
+  }
 };
 </script>
 
