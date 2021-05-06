@@ -45,9 +45,9 @@
       </v-btn>
 
       <v-btn value="lainnya" to="/lainnya">
-        <span>Lainnya</span>
+        <span>Tentang</span>
 
-        <v-icon>mdi-dots-vertical</v-icon>
+        <v-icon>mdi-information-variant</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
