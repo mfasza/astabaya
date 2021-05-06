@@ -109,8 +109,8 @@ export default {
           "Pemerintahan",
           "Tenaga Kerja",
         ],
-        icon: ["mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag"],
-        color: ["grey", "red", "blue", "green", "yellow"],
+        icon: ["mdi-eye", "mdi-account", "mdi-human-male-female", "mdi-office-building", "mdi-cogs"],
+        color: ["#ab47bc", "#ffc107", "#1976d2", "#283593", "#795548"],
       },
       {
         kategori: "Ekonomi dan Perdagangan",
@@ -121,8 +121,8 @@ export default {
           "Produk Domestik Regional Bruto",
           "Transportasi",
         ],
-        icon: ["mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag"],
-        color: ["grey", "red", "blue", "green", "yellow"],
+        icon: ["mdi-factory", "mdi-currency-usd", "mdi-map-marker", "mdi-shopping", "mdi-train-car"],
+        color: ["#ff6f00", "#bf360c", "#26c6da", "#37474f", "#689f38"],
       },
       {
         kategori: "Pertanian dan Pertambangan",
@@ -133,7 +133,7 @@ export default {
           "Peternakan",
           "Tanaman Pangan",
         ],
-        icon: ["mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag", "mdi-drag"],
+        icon: ["mdi-fruit-cherries", "mdi-fish", "mdi-shovel", "mdi-cow", "mdi-sprout"],
         color: ["grey", "red", "blue", "green", "yellow"],
       },
     ];
