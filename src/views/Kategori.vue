@@ -78,7 +78,7 @@ export default {
       return result;
     },
   },
-  mounted: async function () {
+  created: async function () {
     this.openPanel(this.$route.params.panel - 1);
     const kategoris = await this.fetchKategori();
     for (let i = 0; i < kategoris.length; i++) {

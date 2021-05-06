@@ -98,7 +98,7 @@ export default {
     kategoris: [],
     infografiss: [],
   }),
-  mounted: async function () {
+  created: async function () {
     const sub_kategori_options = [
       {
         kategori: "Sosial dan Kependudukan",
@@ -109,7 +109,13 @@ export default {
           "Pemerintahan",
           "Tenaga Kerja",
         ],
-        icon: ["mdi-eye", "mdi-account", "mdi-human-male-female", "mdi-office-building", "mdi-cogs"],
+        icon: [
+          "mdi-eye",
+          "mdi-account",
+          "mdi-human-male-female",
+          "mdi-office-building",
+          "mdi-cogs",
+        ],
         color: ["#ab47bc", "#ffc107", "#1976d2", "#283593", "#795548"],
       },
       {
@@ -121,7 +127,13 @@ export default {
           "Produk Domestik Regional Bruto",
           "Transportasi",
         ],
-        icon: ["mdi-factory", "mdi-currency-usd", "mdi-map-marker", "mdi-shopping", "mdi-train-car"],
+        icon: [
+          "mdi-factory",
+          "mdi-currency-usd",
+          "mdi-map-marker",
+          "mdi-shopping",
+          "mdi-train-car",
+        ],
         color: ["#ff6f00", "#bf360c", "#26c6da", "#37474f", "#689f38"],
       },
       {
@@ -133,7 +145,13 @@ export default {
           "Peternakan",
           "Tanaman Pangan",
         ],
-        icon: ["mdi-fruit-cherries", "mdi-fish", "mdi-shovel", "mdi-cow", "mdi-sprout"],
+        icon: [
+          "mdi-fruit-cherries",
+          "mdi-fish",
+          "mdi-shovel",
+          "mdi-cow",
+          "mdi-sprout",
+        ],
         color: ["grey", "red", "blue", "green", "yellow"],
       },
     ];

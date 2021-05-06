@@ -158,7 +158,7 @@ export default {
   data: () => ({
     tentang: {},
   }),
-  mounted: async function () {
+  created: async function () {
     this.tentang = await this.fetchTentang();
     this.tentang.misi[0].isi = this.tentang.misi[0].isi.replace(/\n/g, "<br>");
   },

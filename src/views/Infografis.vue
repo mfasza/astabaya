@@ -39,7 +39,7 @@ export default {
   data: () => ({
     infografiss: [],
   }),
-  mounted: async function () {
+  created: async function () {
     this.infografiss = await this.fetchInfografis();
   },
   methods: {

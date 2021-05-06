@@ -44,7 +44,7 @@ export default {
       return this.$route.params.id_infografis;
     },
   },
-  mounted: async function () {
+  created: async function () {
     var infografis = await this.fetchInfografis();
     const id_infografis = this.id_infografis;
     infografis = infografis.filter(function (i) {

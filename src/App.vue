@@ -62,11 +62,11 @@ export default {
   }),
   computed: {
     isMain() {
-      const url = this.$route.path
-      const splited_url  = url.split("/");
+      const url = this.$route.path;
+      const splited_url = url.split("/");
       return splited_url.length > 2;
-    }
-  }
+    },
+  },
 };
 </script>
 

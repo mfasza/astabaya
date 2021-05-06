@@ -41,7 +41,7 @@ export default {
       this.watchSeri();
     },
   },
-  mounted: async function () {
+  created: async function () {
     this.watchSeri();
     this.isi_tabels = await this.fetchIsiTabel(this.id_tabel);
     this.selected = this.isi_tabels[0];
