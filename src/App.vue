@@ -38,7 +38,7 @@
         <v-icon>mdi-table</v-icon>
       </v-btn>
 
-      <v-btn value="infografis" to="/Infografis">
+      <v-btn value="infografis" to="/infografis">
         <span>Infografis</span>
 
         <v-icon>mdi-image</v-icon>
