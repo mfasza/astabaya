@@ -14,7 +14,7 @@
             <v-card
               class="mx-1 my-1"
               max-width="344"
-              :to="`/isi_infografis/` + infografis.id"
+              :to="`/infografis/isi_infografis/` + infografis.id"
             >
               <v-img
                 :aspect-ratio="16 / 9"
