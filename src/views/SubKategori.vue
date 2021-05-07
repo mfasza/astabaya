@@ -40,7 +40,7 @@ export default {
       return this.$route.params.id_subkategori;
     },
   },
-  mounted: async function () {
+  created: async function () {
     this.tabels = await this.fetchTabel(this.id_sub_kategori);
   },
   methods: {
