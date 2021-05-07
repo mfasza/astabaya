@@ -4,7 +4,7 @@
     <div class="mt-5">
       <div class="mt-5 mb-2 d-flex align-center">
         <small class="text-sm-body font-weight-bold grey--text">
-          Tentang BPS
+          Tentang BPS Surabaya
         </small>
       </div>
 

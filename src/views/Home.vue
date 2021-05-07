@@ -66,21 +66,24 @@
         active-class="success"
       >
         <v-slide-item v-for="infografis in infografiss" :key="infografis.id">
-          <v-card
-            class="ma-2"
-            max-height="144"
-            min-height="80"
-            max-width="90"
-            min-width="50"
-            :to="`/isi_infografis/` + infografis.id"
-          >
+          <v-row class="ma-2" align="center" justify="center">
             <v-scale-transition>
-              <v-img
-                :src="infografis.file_path"
-                :lazy-src="infografis.file_path"
-              ></v-img>
+              <v-card
+                class="ma-2"
+                max-height="144"
+                min-height="80"
+                max-width="90"
+                min-width="50"
+                :to="`/infografis/isi_infografis/` + infografis.id"
+              >
+                
+                  <v-img
+                    :src="infografis.file_path"
+                    :lazy-src="infografis.file_path"
+                  ></v-img>
+              </v-card>
             </v-scale-transition>
-          </v-card>
+          </v-row>
         </v-slide-item>
       </v-slide-group>
     </div>

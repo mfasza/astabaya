@@ -41,7 +41,7 @@ const routes = [
       import(/* webpackChunkName: "infografis" */ "../views/Infografis"),
   },
   {
-    path: "/isi_infografis/:id_infografis",
+    path: "/infografis/isi_infografis/:id_infografis",
     name: "Infografi",
     component: () =>
       import(/* webpackChunkName: "infografi" */ "../views/IsiInfografis"),
