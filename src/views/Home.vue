@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- kategori container -->
-    <div class="mb-2" v-for="kategori in kategoris" :key="kategori.id">
+    <!-- <div class="mb-2" v-for="kategori in kategoris" :key="kategori.id">
       <div class="mb-2 d-flex align-center">
         <small class="text-sm-body font-weight-bold grey--text">{{
           kategori.kategori
@@ -10,9 +10,9 @@
         <v-btn x-small text class="blue--text" :to="`/kategori/` + kategori.id">
           Lainnya <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
-      </div>
+      </div> -->
       <!-- sub-kategori container -->
-      <v-slide-group
+      <!-- <v-slide-group
         v-model="subkategori_selected"
         class="pa-0 ma-0"
         active-class="success"
@@ -47,7 +47,39 @@
           </v-row>
         </v-slide-item>
       </v-slide-group>
-    </div>
+    </div> -->
+
+    <!-- data strategis container -->
+    <v-expansion-panels multiple>
+      <v-expansion-panel
+        class="outline mb-3"
+      >
+        <v-expansion-panel-header>
+          <div style="display: block">
+            <div class="mb-2">
+              Jumlah Penduduk Surabaya 2020
+            </div>
+            <div
+              class="red--text text--darken-1"
+            >
+              <span class="mx-5" style="font-size: 32px">2.8</span>
+              <span class="grey--text" style="font-size: 14px">
+                (juta jiwa)
+              </span>
+            </div>
+          </div>
+          <template v-slot:actions>
+            <v-icon color="primary">
+              $expand
+            </v-icon>
+          </template>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content class="text-justify">
+          <span class="grey--text text--darken-2" style="font-size: 12px">Inflasi ialah kenaikan harga barang dan jasa secara umum dimana barang dan jasa tersebut merupakan kebutuhan pokok masyarakat atau turunnya daya jual mata uang suatu negara.</span>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+
     <!-- infografis container -->
     <div class="mt-5">
       <div class="mb-2 d-flex align-center">
@@ -102,95 +134,95 @@ export default {
     infografiss: [],
   }),
   created: async function () {
-    const sub_kategori_options = [
-      {
-        kategori: "Sosial dan Kependudukan",
-        subKategori: [
-          "Indeks Pembangunan Manusia",
-          "Kemiskinan dan Ketimpangan",
-          "Kependudukan",
-          "Pemerintahan",
-          "Tenaga Kerja",
-        ],
-        icon: [
-          "mdi-eye",
-          "mdi-account",
-          "mdi-human-male-female",
-          "mdi-office-building",
-          "mdi-cogs",
-        ],
-        color: ["#ab47bc", "#ffc107", "#1976d2", "#283593", "#795548"],
-      },
-      {
-        kategori: "Ekonomi dan Perdagangan",
-        subKategori: [
-          "Industri",
-          "Inflasi",
-          "Pariwisata",
-          "Produk Domestik Regional Bruto",
-          "Transportasi",
-        ],
-        icon: [
-          "mdi-factory",
-          "mdi-currency-usd",
-          "mdi-map-marker",
-          "mdi-shopping",
-          "mdi-train-car",
-        ],
-        color: ["#ff6f00", "#bf360c", "#26c6da", "#37474f", "#689f38"],
-      },
-      {
-        kategori: "Pertanian dan Pertambangan",
-        subKategori: [
-          "Hortikultura",
-          "Perikanan",
-          "Perkebunan",
-          "Peternakan",
-          "Tanaman Pangan",
-        ],
-        icon: [
-          "mdi-fruit-cherries",
-          "mdi-fish",
-          "mdi-shovel",
-          "mdi-cow",
-          "mdi-sprout",
-        ],
-        color: ["grey", "red", "blue", "green", "yellow"],
-      },
-    ];
-    const kategoris = await this.fetchKategori();
-    for (let i = 0; i < kategoris.length; i++) {
-      for (let j = 0; j < sub_kategori_options.length; j++) {
-        if (kategoris[i].kategori == sub_kategori_options[j].kategori) {
-          var subKategori = await this.fetchSubKategori(kategoris[i].id);
-          subKategori = subKategori.map(function (sk) {
-            return {
-              subKategori: sk.sub_kategori,
-              id: sk.id,
-              link: sk.link,
-            };
-          });
-          subKategori = subKategori.filter(function (sk) {
-            let r = false;
-            for (
-              let ski = 0;
-              ski < sub_kategori_options[j].subKategori.length;
-              ski++
-            ) {
-              if (sk.subKategori == sub_kategori_options[j].subKategori[ski]) {
-                sk.icon = sub_kategori_options[j].icon[ski];
-                sk.color = sub_kategori_options[j].color[ski];
-                r = true;
-              }
-            }
-            return r;
-          });
-          kategoris[i].subKategoris = subKategori;
-          this.kategoris.push(kategoris[i]);
-          break;
-        }
-      }
-    }
+    // const sub_kategori_options = [
+    //   {
+    //     kategori: "Sosial dan Kependudukan",
+    //     subKategori: [
+    //       "Indeks Pembangunan Manusia",
+    //       "Kemiskinan dan Ketimpangan",
+    //       "Kependudukan",
+    //       "Pemerintahan",
+    //       "Tenaga Kerja",
+    //     ],
+    //     icon: [
+    //       "mdi-eye",
+    //       "mdi-account",
+    //       "mdi-human-male-female",
+    //       "mdi-office-building",
+    //       "mdi-cogs",
+    //     ],
+    //     color: ["#ab47bc", "#ffc107", "#1976d2", "#283593", "#795548"],
+    //   },
+    //   {
+    //     kategori: "Ekonomi dan Perdagangan",
+    //     subKategori: [
+    //       "Industri",
+    //       "Inflasi",
+    //       "Pariwisata",
+    //       "Produk Domestik Regional Bruto",
+    //       "Transportasi",
+    //     ],
+    //     icon: [
+    //       "mdi-factory",
+    //       "mdi-currency-usd",
+    //       "mdi-map-marker",
+    //       "mdi-shopping",
+    //       "mdi-train-car",
+    //     ],
+    //     color: ["#ff6f00", "#bf360c", "#26c6da", "#37474f", "#689f38"],
+    //   },
+    //   {
+    //     kategori: "Pertanian dan Pertambangan",
+    //     subKategori: [
+    //       "Hortikultura",
+    //       "Perikanan",
+    //       "Perkebunan",
+    //       "Peternakan",
+    //       "Tanaman Pangan",
+    //     ],
+    //     icon: [
+    //       "mdi-fruit-cherries",
+    //       "mdi-fish",
+    //       "mdi-shovel",
+    //       "mdi-cow",
+    //       "mdi-sprout",
+    //     ],
+    //     color: ["grey", "red", "blue", "green", "yellow"],
+    //   },
+    // ];
+    // const kategoris = await this.fetchKategori();
+    // for (let i = 0; i < kategoris.length; i++) {
+    //   for (let j = 0; j < sub_kategori_options.length; j++) {
+    //     if (kategoris[i].kategori == sub_kategori_options[j].kategori) {
+    //       var subKategori = await this.fetchSubKategori(kategoris[i].id);
+    //       subKategori = subKategori.map(function (sk) {
+    //         return {
+    //           subKategori: sk.sub_kategori,
+    //           id: sk.id,
+    //           link: sk.link,
+    //         };
+    //       });
+    //       subKategori = subKategori.filter(function (sk) {
+    //         let r = false;
+    //         for (
+    //           let ski = 0;
+    //           ski < sub_kategori_options[j].subKategori.length;
+    //           ski++
+    //         ) {
+    //           if (sk.subKategori == sub_kategori_options[j].subKategori[ski]) {
+    //             sk.icon = sub_kategori_options[j].icon[ski];
+    //             sk.color = sub_kategori_options[j].color[ski];
+    //             r = true;
+    //           }
+    //         }
+    //         return r;
+    //       });
+    //       kategoris[i].subKategoris = subKategori;
+    //       this.kategoris.push(kategoris[i]);
+    //       break;
+    //     }
+    //   }
+    // }
     var infografiss = await this.fetchInfografis();
     infografiss.sort(function (a, b) {
       return b.id - a.id;
