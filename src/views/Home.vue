@@ -11,8 +11,8 @@
           Lainnya <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div> -->
-      <!-- sub-kategori container -->
-      <!-- <v-slide-group
+    <!-- sub-kategori container -->
+    <!-- <v-slide-group
         v-model="subkategori_selected"
         class="pa-0 ma-0"
         active-class="success"
@@ -51,31 +51,29 @@
 
     <!-- data strategis container -->
     <v-expansion-panels multiple>
-      <v-expansion-panel
+      <v-expansion-panel 
         class="outline mb-3"
+        v-for="db in dataBeranda"
+        :key="db.id"
       >
         <v-expansion-panel-header>
           <div style="display: block">
-            <div class="mb-2">
-              Jumlah Penduduk Surabaya 2020
-            </div>
-            <div
-              class="red--text text--darken-1"
-            >
-              <span class="mx-5" style="font-size: 32px">2.8</span>
+            <div class="mb-2">{{ db.judul }}</div>
+            <div class="red--text text--darken-1">
+              <span class="mx-5" style="font-size: 32px">{{ db.isi }}</span>
               <span class="grey--text" style="font-size: 14px">
-                (juta jiwa)
+                ({{ db.satuan }})
               </span>
             </div>
           </div>
           <template v-slot:actions>
-            <v-icon color="primary">
-              $expand
-            </v-icon>
+            <v-icon color="primary"> $expand </v-icon>
           </template>
         </v-expansion-panel-header>
         <v-expansion-panel-content class="text-justify">
-          <span class="grey--text text--darken-2" style="font-size: 12px">Inflasi ialah kenaikan harga barang dan jasa secara umum dimana barang dan jasa tersebut merupakan kebutuhan pokok masyarakat atau turunnya daya jual mata uang suatu negara.</span>
+          <span class="grey--text text--darken-2" style="font-size: 14px"
+            >{{ db.deskripsi}}</span
+          >
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -108,11 +106,10 @@
                 min-width="50"
                 :to="`/infografis/isi_infografis/` + infografis.id"
               >
-                
-                  <v-img
-                    :src="infografis.file_path"
-                    :lazy-src="infografis.file_path"
-                  ></v-img>
+                <v-img
+                  :src="infografis.file_path"
+                  :lazy-src="infografis.file_path"
+                ></v-img>
               </v-card>
             </v-scale-transition>
           </v-row>
@@ -130,6 +127,7 @@ export default {
   data: () => ({
     subkategori_selected: null,
     infografis_selected: null,
+    dataBeranda: [],
     kategoris: [],
     infografiss: [],
   }),
@@ -223,6 +221,8 @@ export default {
     //     }
     //   }
     // }
+    const dataBeranda = await this.fetchDataBeranda();
+    this.dataBeranda = dataBeranda;
     var infografiss = await this.fetchInfografis();
     infografiss.sort(function (a, b) {
       return b.id - a.id;
@@ -237,19 +237,27 @@ export default {
     back: function () {
       alert("aaa");
     },
-    fetchKategori: async function () {
+    // fetchKategori: async function () {
+    //   const result = await axios
+    //     .get(this.url + "/kategori/get")
+    //     .then(function (response) {
+    //       return response.data.data.kategori;
+    //     });
+    //   return result;
+    // },
+    // fetchSubKategori: async function (kategori_id) {
+    //   const result = await axios
+    //     .get(this.url + "/sub_kategori/get?kategori_id=" + kategori_id)
+    //     .then(function (response) {
+    //       return response.data.data.sub_kategori;
+    //     });
+    //   return result;
+    // },
+    fetchDataBeranda: async function () {
       const result = await axios
-        .get(this.url + "/kategori/get")
+        .get(this.url + "/beranda/get")
         .then(function (response) {
-          return response.data.data.kategori;
-        });
-      return result;
-    },
-    fetchSubKategori: async function (kategori_id) {
-      const result = await axios
-        .get(this.url + "/sub_kategori/get?kategori_id=" + kategori_id)
-        .then(function (response) {
-          return response.data.data.sub_kategori;
+          return response.data.data.beranda;
         });
       return result;
     },
