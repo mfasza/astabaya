@@ -19,9 +19,22 @@
               <v-img
                 :aspect-ratio="16 / 9"
                 :src="infografis.file_path"
+                :lazy-src="infografis.file_path"
                 class="white--text"
                 height="200"
               >
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="grey lighten-5"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
               </v-img>
             </v-card>
           </v-flex>

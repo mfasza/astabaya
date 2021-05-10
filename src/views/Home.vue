@@ -6,11 +6,11 @@
         class="outline mb-3"
         v-for="db in dataBeranda"
         :key="db.id"
-        :readonly="db.readonly"
+        :disabled="db.disabled"
       >
         <v-expansion-panel-header>
           <div style="display: block">
-            <div class="mb-2">{{ db.judul }}</div>
+            <div class="mb-2 black--text">{{ db.judul }}</div>
             <div class="red--text text--darken-1">
               <span class="mx-5" style="font-size: 32px">{{ db.isi }}</span>
               <span class="grey--text" style="font-size: 14px">
@@ -61,7 +61,20 @@
                 <v-img
                   :src="infografis.file_path"
                   :lazy-src="infografis.file_path"
-                ></v-img>
+                >
+                  <template v-slot:placeholder>
+                    <v-row
+                      class="fill-height ma-0"
+                      align="center"
+                      justify="center"
+                    >
+                      <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"
+                      ></v-progress-circular>
+                    </v-row>
+                  </template>
+                </v-img>
               </v-card>
             </v-scale-transition>
           </v-row>
@@ -87,7 +100,7 @@ export default {
     dataBeranda = dataBeranda.map(function (db) {
       return {
         ...db,
-        readonly: (db.deskripsi ? false : true),
+        disabled: (db.deskripsi ? false : true),
       };
     });
     this.dataBeranda = dataBeranda;

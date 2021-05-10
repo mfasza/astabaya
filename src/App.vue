@@ -13,7 +13,8 @@
     <v-main app color="#E5E5E5">
       <v-img
         max-height="175"
-        src="./assets/background.jpg"
+        src="./assets/background.jpeg"
+        lazy-src="./assets/background.jpeg"
         v-show="menu == 'beranda'"
       ></v-img>
       <!-- Provides the application the proper gutter -->
