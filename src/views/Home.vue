@@ -2,7 +2,7 @@
   <div>
     <!-- data strategis container -->
     <v-expansion-panels multiple>
-      <v-expansion-panel 
+      <v-expansion-panel
         class="outline mb-3"
         v-for="db in dataBeranda"
         :key="db.id"
@@ -23,9 +23,9 @@
           </template>
         </v-expansion-panel-header>
         <v-expansion-panel-content class="text-justify">
-          <span class="grey--text text--darken-2" style="font-size: 14px"
-            >{{ db.deskripsi}}</span
-          >
+          <span class="grey--text text--darken-2" style="font-size: 14px">{{
+            db.deskripsi
+          }}</span>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -100,7 +100,7 @@ export default {
     dataBeranda = dataBeranda.map(function (db) {
       return {
         ...db,
-        disabled: (db.deskripsi ? false : true),
+        disabled: db.deskripsi ? false : true,
       };
     });
     this.dataBeranda = dataBeranda;
