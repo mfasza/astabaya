@@ -20,7 +20,9 @@
                 </v-row>
                 <v-row>
                   <div class="red--text text--darken-1">
-                    <span class="mx-2" style="font-size: 32px">{{ db.isi }}</span>
+                    <span class="mx-2" style="font-size: 32px">{{
+                      db.isi
+                    }}</span>
                     <span class="grey--text" style="font-size: 14px">
                       {{ db.satuan }}
                     </span>
