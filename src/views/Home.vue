@@ -9,15 +9,26 @@
         :disabled="db.disabled"
       >
         <v-expansion-panel-header>
-          <div style="display: block">
-            <div class="mb-2 black--text">{{ db.judul }}</div>
-            <div class="red--text text--darken-1">
-              <span class="mx-5" style="font-size: 32px">{{ db.isi }}</span>
-              <span class="grey--text" style="font-size: 14px">
-                ({{ db.satuan }})
-              </span>
-            </div>
-          </div>
+          <v-container class="pt-3 pb-0 px-0">
+            <v-row>
+              <v-col cols="2" class="pl-1 pr-0 py-0">
+                <v-icon x-large>{{ db.ikon }}</v-icon>
+              </v-col>
+              <v-col cols="10">
+                <v-row>
+                  <div class="mx-2 mb-1 black--text">{{ db.judul }}</div>
+                </v-row>
+                <v-row>
+                  <div class="red--text text--darken-1">
+                    <span class="mx-2" style="font-size: 32px">{{ db.isi }}</span>
+                    <span class="grey--text" style="font-size: 14px">
+                      {{ db.satuan }}
+                    </span>
+                  </div>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-container>
           <template v-slot:actions>
             <v-icon color="primary"> $expand </v-icon>
           </template>
